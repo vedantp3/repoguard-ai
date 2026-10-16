@@ -4,6 +4,12 @@ A multi-agent harness that reviews a Python repository and produces a prioritise
 
 The harness is the point: roles, tool gates, budgets, retries, partial results, approvals, untrusted-input handling, shared state, and logs. It runs fully offline by default (deterministic rules, no key needed) and with a **free local model via Ollama** or any OpenAI-compatible API.
 
+## Demo video
+
+Due to time constraints I wasn't able to record the demo video. I'd be glad to do a live
+walkthrough at a time that suits you, where I can run the harness on a task of your choice
+and make changes on the spot.
+
 ## Quick start
 
 Python 3.11+. From PowerShell (step-by-step guide, troubleshooting and running from other folders: [RUNNING.md](RUNNING.md)):
