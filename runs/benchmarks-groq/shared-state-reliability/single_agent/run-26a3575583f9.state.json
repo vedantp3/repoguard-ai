@@ -1,0 +1,103 @@
+{
+  "run_id": "run-26a3575583f9",
+  "goal": "Review the cache helper for reliability and cross-call state leaks.",
+  "mode": "single_agent",
+  "status": "completed",
+  "started_at": "2026-10-16T17:43:56.731917+00:00",
+  "finished_at": "2026-10-16T17:44:01.774046+00:00",
+  "files": [
+    "cache.py"
+  ],
+  "plan": {
+    "subtasks": [
+      {
+        "agent": "single_agent",
+        "objective": "Review the cache helper for reliability and cross-call state leaks.",
+        "paths": [
+          "cache.py"
+        ]
+      }
+    ],
+    "method": "baseline",
+    "rationale": "single agent, one prompt, all tools"
+  },
+  "agents": {
+    "single_agent": {
+      "status": "done",
+      "attempts": 1,
+      "errors": [],
+      "findings": 1,
+      "tool_calls": [
+        "ast_bug_rules",
+        "ast_quality_rules",
+        "ast_security_rules",
+        "secret_scan",
+        "llm_review"
+      ],
+      "objective": "Review the cache helper for reliability and cross-call state leaks.",
+      "allowed_tools": [
+        "ast_bug_rules",
+        "ast_quality_rules",
+        "ast_security_rules",
+        "llm_review",
+        "read_python_files",
+        "secret_scan"
+      ]
+    }
+  },
+  "candidates": {
+    "RG-e403dcb056": {
+      "id": "RG-e403dcb056",
+      "severity": "medium",
+      "description": "Function uses a mutable default argument",
+      "file_path": "cache.py",
+      "line_numbers": [
+        1
+      ],
+      "code_evidence": "def remember(value, cache={}):",
+      "rationale": "The same mutable object is reused across calls, which can leak state between invocations.",
+      "confidence": 0.96,
+      "verification_status": "unverified",
+      "category": "quality",
+      "rule": "mutable-default",
+      "suggested_fix": "Default `cache` to None and create the object inside the function:\n    def remember(..., cache=None):\n        if cache is None:\n            cache = {}",
+      "proposed_by": "single_agent"
+    }
+  },
+  "verification": {
+    "accepted": [
+      "RG-e403dcb056"
+    ],
+    "rejected": [],
+    "revision_requests": [],
+    "rounds": 0
+  },
+  "untrusted_content_warnings": [],
+  "approvals": [
+    {
+      "action": "paid_model_call",
+      "summary": "send 1 file(s) to openai/gpt-oss-120b @ api.groq.com",
+      "granted": true,
+      "reason": "pre-approved with --yes",
+      "max_model_calls": 12,
+      "max_tokens": 60000,
+      "max_cost_usd": "no cost cap set"
+    }
+  ],
+  "budget": {
+    "steps": 1,
+    "model_calls": 1,
+    "tokens": 934,
+    "estimated_cost_usd": null,
+    "per_agent": {
+      "single_agent": {
+        "steps": 1,
+        "model_calls": 1,
+        "tokens": 934
+      }
+    },
+    "per_agent_cost_usd": {}
+  },
+  "partial": false,
+  "stop_reason": null
+}

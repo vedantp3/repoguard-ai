@@ -1,0 +1,88 @@
+{
+  "run_id": "run-21af7ed603fb",
+  "objective": "Review command invocation for unsafe input handling.",
+  "duration_seconds": 0.019675,
+  "partial": false,
+  "stop_reason": null,
+  "mode": "single_agent",
+  "provider": "static (offline AST rules, no model)",
+  "plan": {
+    "subtasks": [
+      {
+        "agent": "single_agent",
+        "objective": "Review command invocation for unsafe input handling.",
+        "paths": [
+          "command_exec.py"
+        ]
+      }
+    ],
+    "method": "baseline",
+    "rationale": "single agent, one prompt, all tools"
+  },
+  "untrusted_content_warnings": [],
+  "approvals": [],
+  "findings": [
+    {
+      "id": "RG-7663bfe20f",
+      "severity": "high",
+      "description": "subprocess.run enables shell=True",
+      "file_path": "command_exec.py",
+      "line_numbers": [
+        5
+      ],
+      "code_evidence": "return subprocess.run(argument, shell=True)",
+      "rationale": "Shell command parsing can enable command injection if arguments contain untrusted data.",
+      "confidence": 0.96,
+      "verification_status": "verified",
+      "category": "security",
+      "rule": "subprocess-shell",
+      "suggested_fix": "    return subprocess.run(shlex.split(argument), shell=False, check=True)\n# import shlex; better still, accept a list and allowlist the program name."
+    }
+  ],
+  "rejected": [],
+  "revision_requests": [],
+  "agents": [
+    {
+      "agent": "single_agent",
+      "findings": [
+        {
+          "id": "RG-7663bfe20f",
+          "severity": "high",
+          "description": "subprocess.run enables shell=True",
+          "file_path": "command_exec.py",
+          "line_numbers": [
+            5
+          ],
+          "code_evidence": "return subprocess.run(argument, shell=True)",
+          "rationale": "Shell command parsing can enable command injection if arguments contain untrusted data.",
+          "confidence": 0.96,
+          "verification_status": "unverified",
+          "category": "security",
+          "rule": "subprocess-shell",
+          "suggested_fix": "    return subprocess.run(shlex.split(argument), shell=False, check=True)\n# import shlex; better still, accept a list and allowlist the program name."
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "prompt_tokens_estimated": 24,
+        "completion_tokens_estimated": 143,
+        "attempts": 1,
+        "duration_seconds": 0.009928
+      }
+    }
+  ],
+  "budget": {
+    "steps": 1,
+    "model_calls": 1,
+    "tokens": 167,
+    "estimated_cost_usd": null,
+    "per_agent": {
+      "single_agent": {
+        "steps": 1,
+        "model_calls": 1,
+        "tokens": 167
+      }
+    },
+    "per_agent_cost_usd": {}
+  }
+}

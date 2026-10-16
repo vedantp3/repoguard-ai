@@ -1,0 +1,12 @@
+{
+  "scenes": [
+    "1-end-to-end",
+    "2-retry",
+    "3-partial",
+    "4a-call-limit",
+    "4b-timeout",
+    "5-send-back",
+    "6-injection",
+    "7-approval"
+  ]
+}

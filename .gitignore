@@ -1,0 +1,42 @@
+# --- Secrets: never commit real keys (.env.example is the committed template) ---
+.env
+.env.*
+!.env.example
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.benchmarks/
+
+# --- Generated run output ---
+# Keep only what the README cites: benchmark traces and the demo scenes.
+# Ad-hoc reviews (runs/<project-name>/, runs/manual/) and logs stay local.
+runs/*
+!runs/benchmarks/
+!runs/benchmarks-groq/
+!runs/benchmarks-ollama/
+!runs/demo/
+*.tmp
+*.log
+
+# --- Editors and OS ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Local tool settings ---
+.claude/settings.local.json

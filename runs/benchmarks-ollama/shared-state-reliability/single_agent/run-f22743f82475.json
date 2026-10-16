@@ -1,0 +1,87 @@
+{
+  "run_id": "run-f22743f82475",
+  "objective": "Review the cache helper for reliability and cross-call state leaks.",
+  "duration_seconds": 23.186036,
+  "partial": false,
+  "stop_reason": null,
+  "mode": "single_agent",
+  "provider": "llama3.2:3b @ localhost:11434",
+  "plan": {
+    "subtasks": [
+      {
+        "agent": "single_agent",
+        "objective": "Review the cache helper for reliability and cross-call state leaks.",
+        "paths": [
+          "cache.py"
+        ]
+      }
+    ],
+    "method": "baseline",
+    "rationale": "single agent, one prompt, all tools"
+  },
+  "untrusted_content_warnings": [],
+  "approvals": [],
+  "findings": [
+    {
+      "id": "RG-e403dcb056",
+      "severity": "medium",
+      "description": "Function uses a mutable default argument",
+      "file_path": "cache.py",
+      "line_numbers": [
+        1
+      ],
+      "code_evidence": "def remember(value, cache={}):",
+      "rationale": "The same mutable object is reused across calls, which can leak state between invocations.",
+      "confidence": 0.96,
+      "verification_status": "verified",
+      "category": "quality",
+      "rule": "mutable-default"
+    }
+  ],
+  "rejected": [],
+  "revision_requests": [],
+  "agents": [
+    {
+      "agent": "single_agent",
+      "findings": [
+        {
+          "id": "RG-e403dcb056",
+          "severity": "medium",
+          "description": "Function uses a mutable default argument",
+          "file_path": "cache.py",
+          "line_numbers": [
+            1
+          ],
+          "code_evidence": "def remember(value, cache={}):",
+          "rationale": "The same mutable object is reused across calls, which can leak state between invocations.",
+          "confidence": 0.96,
+          "verification_status": "unverified",
+          "category": "quality",
+          "rule": "mutable-default"
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "prompt_tokens": 363,
+        "completion_tokens": 149,
+        "invalid_findings": 0,
+        "attempts": 1,
+        "duration_seconds": 23.161801
+      }
+    }
+  ],
+  "budget": {
+    "steps": 1,
+    "model_calls": 1,
+    "tokens": 512,
+    "estimated_cost_usd": null,
+    "per_agent": {
+      "single_agent": {
+        "steps": 1,
+        "model_calls": 1,
+        "tokens": 512
+      }
+    },
+    "per_agent_cost_usd": {}
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "run_id": "run-47a944ac4665",
+  "objective": "Review the calculator for correctness edge cases and unsafe expression evaluation.",
+  "duration_seconds": 0.014544,
+  "partial": false,
+  "stop_reason": null,
+  "mode": "single_agent",
+  "provider": "static (offline AST rules, no model)",
+  "plan": {
+    "subtasks": [
+      {
+        "agent": "single_agent",
+        "objective": "Review the calculator for correctness edge cases and unsafe expression evaluation.",
+        "paths": [
+          "calculator.py"
+        ]
+      }
+    ],
+    "method": "baseline",
+    "rationale": "single agent, one prompt, all tools"
+  },
+  "untrusted_content_warnings": [],
+  "approvals": [],
+  "findings": [
+    {
+      "id": "RG-baa36383e0",
+      "severity": "high",
+      "description": "Use of eval can execute attacker-controlled Python",
+      "file_path": "calculator.py",
+      "line_numbers": [
+        6
+      ],
+      "code_evidence": "return eval(expression)",
+      "rationale": "Dynamic code execution is unsafe when any part of the expression is untrusted.",
+      "confidence": 0.96,
+      "verification_status": "verified",
+      "category": "security",
+      "rule": "dynamic-eval",
+      "suggested_fix": "    return ast.literal_eval(expression)\n# import ast; literal_eval accepts only Python literals. For arithmetic, parse with ast and allow only number and operator nodes."
+    },
+    {
+      "id": "RG-c3bf21b6df",
+      "severity": "medium",
+      "description": "Division may fail when the divisor is zero",
+      "file_path": "calculator.py",
+      "line_numbers": [
+        2
+      ],
+      "code_evidence": "return total / count",
+      "rationale": "The divisor is a variable and this expression does not establish a non-zero precondition.",
+      "confidence": 0.96,
+      "verification_status": "verified",
+      "category": "bug",
+      "rule": "unguarded-division",
+      "suggested_fix": "    if count == 0:\n        raise ValueError(\"count must not be zero\")\n    return total / count"
+    }
+  ],
+  "rejected": [],
+  "revision_requests": [],
+  "agents": [
+    {
+      "agent": "single_agent",
+      "findings": [
+        {
+          "id": "RG-c3bf21b6df",
+          "severity": "medium",
+          "description": "Division may fail when the divisor is zero",
+          "file_path": "calculator.py",
+          "line_numbers": [
+            2
+          ],
+          "code_evidence": "return total / count",
+          "rationale": "The divisor is a variable and this expression does not establish a non-zero precondition.",
+          "confidence": 0.96,
+          "verification_status": "unverified",
+          "category": "bug",
+          "rule": "unguarded-division",
+          "suggested_fix": "    if count == 0:\n        raise ValueError(\"count must not be zero\")\n    return total / count"
+        },
+        {
+          "id": "RG-baa36383e0",
+          "severity": "high",
+          "description": "Use of eval can execute attacker-controlled Python",
+          "file_path": "calculator.py",
+          "line_numbers": [
+            6
+          ],
+          "code_evidence": "return eval(expression)",
+          "rationale": "Dynamic code execution is unsafe when any part of the expression is untrusted.",
+          "confidence": 0.96,
+          "verification_status": "unverified",
+          "category": "security",
+          "rule": "dynamic-eval",
+          "suggested_fix": "    return ast.literal_eval(expression)\n# import ast; literal_eval accepts only Python literals. For arithmetic, parse with ast and allow only number and operator nodes."
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "prompt_tokens_estimated": 27,
+        "completion_tokens_estimated": 270,
+        "attempts": 1,
+        "duration_seconds": 0.005425
+      }
+    }
+  ],
+  "budget": {
+    "steps": 1,
+    "model_calls": 1,
+    "tokens": 297,
+    "estimated_cost_usd": null,
+    "per_agent": {
+      "single_agent": {
+        "steps": 1,
+        "model_calls": 1,
+        "tokens": 297
+      }
+    },
+    "per_agent_cost_usd": {}
+  }
+}

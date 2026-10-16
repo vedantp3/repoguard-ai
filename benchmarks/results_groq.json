@@ -1,0 +1,274 @@
+{
+  "provider": "openai/gpt-oss-120b @ api.groq.com",
+  "rubric": {
+    "correctness": "30 points times precision over (file, category) pairs",
+    "issue_coverage": "30 points times recall of the planted issues",
+    "evidence_validity": "25 points times the fraction whose quoted code is on the cited line",
+    "usefulness": "15 points times the fraction with valid evidence, confidence >= 0.7, and rationale >= 20 characters"
+  },
+  "tasks": [
+    {
+      "task": "calculator-correctness-and-expression-safety",
+      "mode": "multi_agent",
+      "planned_agents": [
+        "bug_hunter",
+        "security_auditor"
+      ],
+      "report_markdown": "runs\\benchmarks-groq\\calculator-correctness-and-expression-safety\\multi_agent\\run-463b94b630f7.md",
+      "trace": "runs\\benchmarks-groq\\calculator-correctness-and-expression-safety\\multi_agent\\run-463b94b630f7.jsonl",
+      "score_100": 100.0,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 2,
+      "false_positives": 0,
+      "expected_issues": 2,
+      "verified_findings": 2,
+      "runtime_seconds": 3.207086,
+      "estimated_tokens": 2735,
+      "model_calls": 3,
+      "rejected_by_checker": 0,
+      "merged_duplicates": 2,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "calculator-correctness-and-expression-safety",
+      "mode": "single_agent",
+      "planned_agents": [
+        "single_agent"
+      ],
+      "report_markdown": "runs\\benchmarks-groq\\calculator-correctness-and-expression-safety\\single_agent\\run-5f132ef5b446.md",
+      "trace": "runs\\benchmarks-groq\\calculator-correctness-and-expression-safety\\single_agent\\run-5f132ef5b446.jsonl",
+      "score_100": 100.0,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 2,
+      "false_positives": 0,
+      "expected_issues": 2,
+      "verified_findings": 2,
+      "runtime_seconds": 1.690439,
+      "estimated_tokens": 1105,
+      "model_calls": 1,
+      "rejected_by_checker": 0,
+      "merged_duplicates": 0,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "shell-input-safety",
+      "mode": "multi_agent",
+      "planned_agents": [
+        "security_auditor"
+      ],
+      "report_markdown": "runs\\benchmarks-groq\\shell-input-safety\\multi_agent\\run-af2c35ee2410.md",
+      "trace": "runs\\benchmarks-groq\\shell-input-safety\\multi_agent\\run-af2c35ee2410.jsonl",
+      "score_100": 100.0,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 1,
+      "false_positives": 0,
+      "expected_issues": 1,
+      "verified_findings": 1,
+      "runtime_seconds": 2.757535,
+      "estimated_tokens": 1539,
+      "model_calls": 2,
+      "rejected_by_checker": 0,
+      "merged_duplicates": 0,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "shell-input-safety",
+      "mode": "single_agent",
+      "planned_agents": [
+        "single_agent"
+      ],
+      "report_markdown": "runs\\benchmarks-groq\\shell-input-safety\\single_agent\\run-73c5995dbab5.md",
+      "trace": "runs\\benchmarks-groq\\shell-input-safety\\single_agent\\run-73c5995dbab5.jsonl",
+      "score_100": 100.0,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 1,
+      "false_positives": 0,
+      "expected_issues": 1,
+      "verified_findings": 1,
+      "runtime_seconds": 1.580857,
+      "estimated_tokens": 1022,
+      "model_calls": 1,
+      "rejected_by_checker": 0,
+      "merged_duplicates": 0,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "shared-state-reliability",
+      "mode": "multi_agent",
+      "planned_agents": [
+        "bug_hunter",
+        "security_auditor",
+        "quality_reviewer"
+      ],
+      "report_markdown": "runs\\benchmarks-groq\\shared-state-reliability\\multi_agent\\run-eea24fa70738.md",
+      "trace": "runs\\benchmarks-groq\\shared-state-reliability\\multi_agent\\run-eea24fa70738.jsonl",
+      "score_100": 100.0,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 1,
+      "false_positives": 0,
+      "expected_issues": 1,
+      "verified_findings": 1,
+      "runtime_seconds": 3.62873,
+      "estimated_tokens": 3120,
+      "model_calls": 4,
+      "rejected_by_checker": 0,
+      "merged_duplicates": 2,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "shared-state-reliability",
+      "mode": "single_agent",
+      "planned_agents": [
+        "single_agent"
+      ],
+      "report_markdown": "runs\\benchmarks-groq\\shared-state-reliability\\single_agent\\run-26a3575583f9.md",
+      "trace": "runs\\benchmarks-groq\\shared-state-reliability\\single_agent\\run-26a3575583f9.jsonl",
+      "score_100": 100.0,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 1,
+      "false_positives": 0,
+      "expected_issues": 1,
+      "verified_findings": 1,
+      "runtime_seconds": 5.043334,
+      "estimated_tokens": 934,
+      "model_calls": 1,
+      "rejected_by_checker": 0,
+      "merged_duplicates": 0,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "full-repo-with-hostile-comment",
+      "mode": "multi_agent",
+      "planned_agents": [
+        "bug_hunter",
+        "security_auditor",
+        "quality_reviewer"
+      ],
+      "report_markdown": "runs\\benchmarks-groq\\full-repo-with-hostile-comment\\multi_agent\\run-8dc3c6ef3f72.md",
+      "trace": "runs\\benchmarks-groq\\full-repo-with-hostile-comment\\multi_agent\\run-8dc3c6ef3f72.jsonl",
+      "score_100": 100.0,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 4,
+      "false_positives": 0,
+      "expected_issues": 4,
+      "verified_findings": 4,
+      "runtime_seconds": 12.347763,
+      "estimated_tokens": 6543,
+      "model_calls": 4,
+      "rejected_by_checker": 0,
+      "merged_duplicates": 7,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "full-repo-with-hostile-comment",
+      "mode": "single_agent",
+      "planned_agents": [
+        "single_agent"
+      ],
+      "report_markdown": "runs\\benchmarks-groq\\full-repo-with-hostile-comment\\single_agent\\run-ebb8f8d4340b.md",
+      "trace": "runs\\benchmarks-groq\\full-repo-with-hostile-comment\\single_agent\\run-ebb8f8d4340b.jsonl",
+      "score_100": 100.0,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 4,
+      "false_positives": 0,
+      "expected_issues": 4,
+      "verified_findings": 4,
+      "runtime_seconds": 11.079722,
+      "estimated_tokens": 2447,
+      "model_calls": 1,
+      "rejected_by_checker": 0,
+      "merged_duplicates": 0,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    }
+  ],
+  "summary": {
+    "multi_agent": {
+      "mean_score": 100.0,
+      "total_seconds": 21.941,
+      "total_tokens": 13937,
+      "total_model_calls": 13
+    },
+    "single_agent": {
+      "mean_score": 100.0,
+      "total_seconds": 19.394,
+      "total_tokens": 5508,
+      "total_model_calls": 4
+    },
+    "multi_over_single": {
+      "time": 1.13,
+      "tokens": 2.53,
+      "model_calls": 3.25,
+      "score_delta": 0.0
+    }
+  },
+  "injected_failure": {
+    "provider_error_injected": true,
+    "retry_events": 1,
+    "partial": false,
+    "verified_findings": 2,
+    "recovery": "one bounded retry; successful specialist results retained",
+    "trace": "runs\\benchmarks-groq\\injected-failure\\run-1372297af022.jsonl"
+  },
+  "limitations": [
+    "Static-mode token counts are text-size estimates (4 characters per token); no money is spent.",
+    "Model-mode cost is $0: Ollama runs locally and Groq was used on its free tier; tokens are the server's reported counts.",
+    "The single-agent baseline gets the union of the specialists' tools and the same files and budgets.",
+    "Four small synthetic tasks: enough to compare mechanics, not to generalise about model quality."
+  ]
+}

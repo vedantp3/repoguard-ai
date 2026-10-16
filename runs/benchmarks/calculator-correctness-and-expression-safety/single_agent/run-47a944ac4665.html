@@ -1,0 +1,259 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Run run-47a944ac4665</title><style>
+:root{--bg:#f7f7f5;--card:#fff;--ink:#1d1d1b;--muted:#6b6b66;--line:#e3e2dc;--ok:#1f7a4d;--warn:#a65d00;--bad:#b42318;--accent:#3554d1}
+@media (prefers-color-scheme:dark){:root{--bg:#141413;--card:#1e1e1c;--ink:#ecebe6;--muted:#a3a29b;--line:#34332f;--ok:#4cc38a;--warn:#f0a648;--bad:#f2766b;--accent:#8ea2ff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:24px 16px 64px}h1{font-size:22px;margin:0 0 4px}h2{font-size:16px;margin:28px 0 10px}
+.muted{color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}.card b{display:block;font-size:20px}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{font-weight:600;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+code,pre{font:12px/1.45 ui-monospace,Consolas,monospace}pre{white-space:pre-wrap;word-break:break-word;margin:6px 0 0;max-height:320px;overflow:auto}
+.pill{display:inline-block;border-radius:99px;padding:1px 8px;font-size:12px;border:1px solid currentColor}
+.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}.scroll{overflow-x:auto}
+details summary{cursor:pointer}.ev-agent{font-weight:600}
+</style></head><body><main>
+<h1>RepoGuard run run-47a944ac4665</h1>
+<div class='muted'>Goal: Review the calculator for correctness edge cases and unsafe expression evaluation. &middot; mode single_agent &middot; provider static (offline AST rules, no model)</div>
+<div class='cards'><div class='card'><span class='muted'>Status</span><b><span class='pill ok'>COMPLETE</span></b></div><div class='card'><span class='muted'>Verified findings</span><b>2</b></div><div class='card'><span class='muted'>Model calls</span><b>1</b></div><div class='card'><span class='muted'>Tokens</span><b>297</b></div><div class='card'><span class='muted'>Seconds</span><b>0.014544</b></div><div class='card'><span class='muted'>Stop reason</span><b>none</b></div></div>
+<h2>Agents (shared state)</h2><div class='scroll'><table><tr><th>Agent</th><th>Status</th><th>Attempts</th><th>Candidates</th><th>Tools called</th><th>Errors</th></tr>
+<tr><td class='ev-agent'>single_agent</td><td class='ok'>done</td><td>1</td><td>2</td><td><code>ast_bug_rules, ast_quality_rules, ast_security_rules, secret_scan</code></td><td class='bad'></td></tr>
+</table></div>
+<h2>Findings</h2><div class='scroll'><table><tr><th>Severity</th><th>Location</th><th>Finding</th><th>Evidence</th><th>Suggested fix</th><th>By</th></tr>
+<tr><td>high</td><td><code>calculator.py:6</code></td><td>Use of eval can execute attacker-controlled Python</td><td><code>return eval(expression)</code></td><td><pre>    return ast.literal_eval(expression)
+# import ast; literal_eval accepts only Python literals. For arithmetic, parse with ast and allow only number and operator nodes.</pre></td><td>single_agent</td></tr>
+<tr><td>medium</td><td><code>calculator.py:2</code></td><td>Division may fail when the divisor is zero</td><td><code>return total / count</code></td><td><pre>    if count == 0:
+        raise ValueError(&quot;count must not be zero&quot;)
+    return total / count</pre></td><td>single_agent</td></tr>
+</table></div>
+<h2>Timeline</h2><div class='scroll'><table><tr><th>t+s</th><th>Agent</th><th>Event</th><th>Detail</th></tr>
+<tr><td><code>0.000</code></td><td class='ev-agent'></td><td class=''><code>run.started</code></td><td>mode=single_agent provider=static (offline AST rules, no model) goal=&#x27;Review the calculator for correctness edge cases and unsafe expression evaluation.&#x27;<details><summary class='muted'>payload</summary><pre>{
+  &quot;run_id&quot;: &quot;run-47a944ac4665&quot;,
+  &quot;objective&quot;: &quot;Review the calculator for correctness edge cases and unsafe expression evaluation.&quot;,
+  &quot;mode&quot;: &quot;single_agent&quot;,
+  &quot;provider&quot;: &quot;static (offline AST rules, no model)&quot;,
+  &quot;budget_config&quot;: {
+    &quot;max_steps&quot;: 32,
+    &quot;max_model_calls&quot;: 12,
+    &quot;max_tokens&quot;: 20000,
+    &quot;max_cost_usd&quot;: null,
+    &quot;per_agent_cost_usd&quot;: null,
+    &quot;input_cost_per_1k_usd&quot;: null,
+    &quot;output_cost_per_1k_usd&quot;: null,
+    &quot;per_agent_steps&quot;: 4,
+    &quot;per_agent_calls&quot;: 4,
+    &quot;per_agent_tokens&quot;: 12000,
+    &quot;agent_timeout_seconds&quot;: 15,
+    &quot;per_agent_time_seconds&quot;: 45,
+    &quot;max_duration_seconds&quot;: 120,
+    &quot;max_retries&quot;: 1,
+    &quot;retry_base_seconds&quot;: 0,
+    &quot;retry_max_seconds&quot;: 1.0,
+    &quot;max_revisions&quot;: 1,
+    &quot;completion_token_reserve&quot;: 512,
+    &quot;max_batch_tokens&quot;: 6000
+  }
+}</pre></details></td></tr>
+<tr><td><code>0.001</code></td><td class='ev-agent'>harness</td><td class=''><code>tool.list_python_files</code></td><td>1 file(s)<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;harness&quot;,
+  &quot;duration_seconds&quot;: 0.000431,
+  &quot;count&quot;: 1,
+  &quot;requested_paths&quot;: [
+    &quot;calculator.py&quot;
+  ]
+}</pre></details></td></tr>
+<tr><td><code>0.002</code></td><td class='ev-agent'>harness</td><td class=''><code>tool.read_file</code></td><td>calculator.py (108 bytes)<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;harness&quot;,
+  &quot;path&quot;: &quot;calculator.py&quot;,
+  &quot;duration_seconds&quot;: 0.000438,
+  &quot;bytes&quot;: 108
+}</pre></details></td></tr>
+<tr><td><code>0.003</code></td><td class='ev-agent'>planner</td><td class=''><code>planner.output</code></td><td>[baseline] -&gt; single_agent (single agent, one prompt, all tools)<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;planner&quot;,
+  &quot;plan&quot;: {
+    &quot;subtasks&quot;: [
+      {
+        &quot;agent&quot;: &quot;single_agent&quot;,
+        &quot;objective&quot;: &quot;Review the calculator for correctness edge cases and unsafe expression evaluation.&quot;,
+        &quot;paths&quot;: [
+          &quot;calculator.py&quot;
+        ]
+      }
+    ],
+    &quot;method&quot;: &quot;baseline&quot;,
+    &quot;rationale&quot;: &quot;single agent, one prompt, all tools&quot;
+  },
+  &quot;paths&quot;: [
+    &quot;calculator.py&quot;
+  ]
+}</pre></details></td></tr>
+<tr><td><code>0.006</code></td><td class='ev-agent'>single_agent</td><td class=''><code>agent.input</code></td><td>attempt 1 tools=[&#x27;ast_bug_rules&#x27;, &#x27;ast_quality_rules&#x27;, &#x27;ast_security_rules&#x27;, &#x27;llm_review&#x27;, &#x27;read_python_files&#x27;, &#x27;secret_scan&#x27;] files=[&#x27;calculator.py&#x27;]<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;single_agent&quot;,
+  &quot;objective&quot;: &quot;Review the calculator for correctness edge cases and unsafe expression evaluation.&quot;,
+  &quot;attempt&quot;: 1,
+  &quot;allowed_tools&quot;: [
+    &quot;ast_bug_rules&quot;,
+    &quot;ast_quality_rules&quot;,
+    &quot;ast_security_rules&quot;,
+    &quot;llm_review&quot;,
+    &quot;read_python_files&quot;,
+    &quot;secret_scan&quot;
+  ],
+  &quot;instructions&quot;: &quot;Find correctness (bug), security, and reliability (quality) issues.&quot;,
+  &quot;timeout_seconds&quot;: 15,
+  &quot;files&quot;: [
+    {
+      &quot;path&quot;: &quot;calculator.py&quot;,
+      &quot;content&quot;: &quot;def average(total, count):\n    return total / count\n\n\ndef calculate(expression):\n    return eval(expression)&quot;
+    }
+  ]
+}</pre></details></td></tr>
+<tr><td><code>0.006</code></td><td class='ev-agent'>single_agent</td><td class=''><code>tool.call</code></td><td>ast_bug_rules<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;single_agent&quot;,
+  &quot;tool&quot;: &quot;ast_bug_rules&quot;
+}</pre></details></td></tr>
+<tr><td><code>0.007</code></td><td class='ev-agent'>single_agent</td><td class=''><code>tool.result</code></td><td>ast_bug_rules 0.000298s {&#x27;files&#x27;: 1, &#x27;findings&#x27;: 1}<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;single_agent&quot;,
+  &quot;tool&quot;: &quot;ast_bug_rules&quot;,
+  &quot;duration_seconds&quot;: 0.000298,
+  &quot;files&quot;: 1,
+  &quot;findings&quot;: 1
+}</pre></details></td></tr>
+<tr><td><code>0.008</code></td><td class='ev-agent'>single_agent</td><td class=''><code>tool.call</code></td><td>ast_quality_rules<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;single_agent&quot;,
+  &quot;tool&quot;: &quot;ast_quality_rules&quot;
+}</pre></details></td></tr>
+<tr><td><code>0.009</code></td><td class='ev-agent'>single_agent</td><td class=''><code>tool.result</code></td><td>ast_quality_rules 0.000278s {&#x27;files&#x27;: 1, &#x27;findings&#x27;: 0}<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;single_agent&quot;,
+  &quot;tool&quot;: &quot;ast_quality_rules&quot;,
+  &quot;duration_seconds&quot;: 0.000278,
+  &quot;files&quot;: 1,
+  &quot;findings&quot;: 0
+}</pre></details></td></tr>
+<tr><td><code>0.009</code></td><td class='ev-agent'>single_agent</td><td class=''><code>tool.call</code></td><td>ast_security_rules<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;single_agent&quot;,
+  &quot;tool&quot;: &quot;ast_security_rules&quot;
+}</pre></details></td></tr>
+<tr><td><code>0.010</code></td><td class='ev-agent'>single_agent</td><td class=''><code>tool.result</code></td><td>ast_security_rules 0.000257s {&#x27;files&#x27;: 1, &#x27;findings&#x27;: 1}<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;single_agent&quot;,
+  &quot;tool&quot;: &quot;ast_security_rules&quot;,
+  &quot;duration_seconds&quot;: 0.000257,
+  &quot;files&quot;: 1,
+  &quot;findings&quot;: 1
+}</pre></details></td></tr>
+<tr><td><code>0.010</code></td><td class='ev-agent'>single_agent</td><td class=''><code>tool.call</code></td><td>secret_scan<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;single_agent&quot;,
+  &quot;tool&quot;: &quot;secret_scan&quot;
+}</pre></details></td></tr>
+<tr><td><code>0.011</code></td><td class='ev-agent'>single_agent</td><td class=''><code>tool.result</code></td><td>secret_scan 0.000254s {&#x27;files&#x27;: 1, &#x27;findings&#x27;: 0}<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;single_agent&quot;,
+  &quot;tool&quot;: &quot;secret_scan&quot;,
+  &quot;duration_seconds&quot;: 0.000254,
+  &quot;files&quot;: 1,
+  &quot;findings&quot;: 0
+}</pre></details></td></tr>
+<tr><td><code>0.011</code></td><td class='ev-agent'>single_agent</td><td class=''><code>agent.output</code></td><td>2 finding(s), 297 tokens, 0.005425s<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;single_agent&quot;,
+  &quot;attempt&quot;: 1,
+  &quot;duration_seconds&quot;: 0.005425,
+  &quot;tokens&quot;: 297,
+  &quot;result&quot;: {
+    &quot;agent&quot;: &quot;single_agent&quot;,
+    &quot;findings&quot;: [
+      {
+        &quot;id&quot;: &quot;RG-c3bf21b6df&quot;,
+        &quot;severity&quot;: &quot;medium&quot;,
+        &quot;description&quot;: &quot;Division may fail when the divisor is zero&quot;,
+        &quot;file_path&quot;: &quot;calculator.py&quot;,
+        &quot;line_numbers&quot;: [
+          2
+        ],
+        &quot;code_evidence&quot;: &quot;return total / count&quot;,
+        &quot;rationale&quot;: &quot;The divisor is a variable and this expression does not establish a non-zero precondition.&quot;,
+        &quot;confidence&quot;: 0.96,
+        &quot;verification_status&quot;: &quot;unverified&quot;,
+        &quot;category&quot;: &quot;bug&quot;,
+        &quot;rule&quot;: &quot;unguarded-division&quot;,
+        &quot;suggested_fix&quot;: &quot;    if count == 0:\n        raise ValueError(\&quot;count must not be zero\&quot;)\n    return total / count&quot;
+      },
+      {
+        &quot;id&quot;: &quot;RG-baa36383e0&quot;,
+        &quot;severity&quot;: &quot;high&quot;,
+        &quot;description&quot;: &quot;Use of eval can execute attacker-controlled Python&quot;,
+        &quot;file_path&quot;: &quot;calculator.py&quot;,
+        &quot;line_numbers&quot;: [
+          6
+        ],
+        &quot;code_evidence&quot;: &quot;return eval(expression)&quot;,
+        &quot;rationale&quot;: &quot;Dynamic code execution is unsafe when any part of the expression is untrusted.&quot;,
+        &quot;confidence&quot;: 0.96,
+        &quot;verification_status&quot;: &quot;unverified&quot;,
+        &quot;category&quot;: &quot;security&quot;,
+        &quot;rule&quot;: &quot;dynamic-eval&quot;,
+        &quot;suggested_fix&quot;: &quot;    return ast.literal_eval(expression)\n# import ast; literal_eval accepts only Python literals. For arithmetic, parse with ast and allow only number and operator nodes.&quot;
+      }
+    ],
+    &quot;errors&quot;: [],
+    &quot;usage&quot;: {
+      &quot;prompt_tokens_estimated&quot;: 27,
+      &quot;completion_tokens_estimated&quot;: 270,
+      &quot;attempts&quot;: 1,
+      &quot;duration_seconds&quot;: 0.005425
+    }
+  },
+  &quot;budget&quot;: {
+    &quot;steps&quot;: 1,
+    &quot;model_calls&quot;: 1,
+    &quot;tokens&quot;: 297,
+    &quot;estimated_cost_usd&quot;: null,
+    &quot;per_agent&quot;: {
+      &quot;single_agent&quot;: {
+        &quot;steps&quot;: 1,
+        &quot;model_calls&quot;: 1,
+        &quot;tokens&quot;: 297
+      }
+    },
+    &quot;per_agent_cost_usd&quot;: {}
+  }
+}</pre></details></td></tr>
+<tr><td><code>0.013</code></td><td class='ev-agent'>verifier</td><td class=''><code>verification.round</code></td><td>accepted=2<details><summary class='muted'>payload</summary><pre>{
+  &quot;round&quot;: 0,
+  &quot;agent&quot;: &quot;verifier&quot;,
+  &quot;accepted&quot;: [
+    &quot;RG-c3bf21b6df&quot;,
+    &quot;RG-baa36383e0&quot;
+  ],
+  &quot;rejected&quot;: [],
+  &quot;requests&quot;: []
+}</pre></details></td></tr>
+<tr><td><code>0.013</code></td><td class='ev-agent'>verifier</td><td class=''><code>verification.decision</code></td><td>accepted=2<details><summary class='muted'>payload</summary><pre>{
+  &quot;agent&quot;: &quot;verifier&quot;,
+  &quot;accepted&quot;: [
+    &quot;RG-baa36383e0&quot;,
+    &quot;RG-c3bf21b6df&quot;
+  ],
+  &quot;rejected&quot;: [],
+  &quot;revision_requests&quot;: []
+}</pre></details></td></tr>
+<tr><td><code>0.015</code></td><td class='ev-agent'></td><td class=''><code>run.finished</code></td><td>partial=False findings=2 calls=1 tokens=297 0.014544s stop=None<details><summary class='muted'>payload</summary><pre>{
+  &quot;run_id&quot;: &quot;run-47a944ac4665&quot;,
+  &quot;duration_seconds&quot;: 0.014544,
+  &quot;partial&quot;: false,
+  &quot;stop_reason&quot;: null,
+  &quot;findings&quot;: 2,
+  &quot;budget&quot;: {
+    &quot;steps&quot;: 1,
+    &quot;model_calls&quot;: 1,
+    &quot;tokens&quot;: 297,
+    &quot;estimated_cost_usd&quot;: null,
+    &quot;per_agent&quot;: {
+      &quot;single_agent&quot;: {
+        &quot;steps&quot;: 1,
+        &quot;model_calls&quot;: 1,
+        &quot;tokens&quot;: 297
+      }
+    },
+    &quot;per_agent_cost_usd&quot;: {}
+  }
+}</pre></details></td></tr>
+</table></div>
+</main></body></html>

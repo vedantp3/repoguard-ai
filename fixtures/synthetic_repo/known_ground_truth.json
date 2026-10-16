@@ -1,0 +1,9 @@
+{
+  "issues": [
+    {"file": "calculator.py", "rule": "unguarded-division", "category": "bug"},
+    {"file": "calculator.py", "rule": "dynamic-eval", "category": "security"},
+    {"file": "cache.py", "rule": "mutable-default", "category": "quality"},
+    {"file": "prompt_injection.py", "rule": "prompt-injection-content", "category": "test-safety"}
+  ],
+  "note": "The prompt-injection string is hostile fixture data, not an instruction or finding by itself."
+}

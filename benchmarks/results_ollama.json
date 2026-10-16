@@ -1,0 +1,266 @@
+{
+  "provider": "llama3.2:3b @ localhost:11434",
+  "rubric": {
+    "correctness": "30 points times precision over (file, category) pairs",
+    "issue_coverage": "30 points times recall of the planted issues",
+    "evidence_validity": "25 points times the fraction whose quoted code is on the cited line",
+    "usefulness": "15 points times the fraction with valid evidence, confidence >= 0.7, and rationale >= 20 characters"
+  },
+  "tasks": [
+    {
+      "task": "calculator-correctness-and-expression-safety",
+      "mode": "multi_agent",
+      "planned_agents": [
+        "bug_hunter",
+        "security_auditor",
+        "quality_reviewer"
+      ],
+      "report_markdown": "runs\\benchmarks-ollama\\calculator-correctness-and-expression-safety\\multi_agent\\run-37ce37b461bc.md",
+      "trace": "runs\\benchmarks-ollama\\calculator-correctness-and-expression-safety\\multi_agent\\run-37ce37b461bc.jsonl",
+      "score_100": 100.0,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 2,
+      "false_positives": 0,
+      "expected_issues": 2,
+      "verified_findings": 3,
+      "runtime_seconds": 120.068359,
+      "estimated_tokens": 2933,
+      "model_calls": 6,
+      "rejected_by_checker": 2,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "calculator-correctness-and-expression-safety",
+      "mode": "single_agent",
+      "planned_agents": [
+        "single_agent"
+      ],
+      "report_markdown": "runs\\benchmarks-ollama\\calculator-correctness-and-expression-safety\\single_agent\\run-c30a27b98bd8.md",
+      "trace": "runs\\benchmarks-ollama\\calculator-correctness-and-expression-safety\\single_agent\\run-c30a27b98bd8.jsonl",
+      "score_100": 100.0,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 2,
+      "false_positives": 0,
+      "expected_issues": 2,
+      "verified_findings": 2,
+      "runtime_seconds": 70.788234,
+      "estimated_tokens": 1233,
+      "model_calls": 2,
+      "rejected_by_checker": 1,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "shell-input-safety",
+      "mode": "multi_agent",
+      "planned_agents": [
+        "security_auditor",
+        "quality_reviewer"
+      ],
+      "report_markdown": "runs\\benchmarks-ollama\\shell-input-safety\\multi_agent\\run-6629087f3fa3.md",
+      "trace": "runs\\benchmarks-ollama\\shell-input-safety\\multi_agent\\run-6629087f3fa3.jsonl",
+      "score_100": 100.0,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 1,
+      "false_positives": 0,
+      "expected_issues": 1,
+      "verified_findings": 1,
+      "runtime_seconds": 66.225342,
+      "estimated_tokens": 1676,
+      "model_calls": 4,
+      "rejected_by_checker": 0,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "shell-input-safety",
+      "mode": "single_agent",
+      "planned_agents": [
+        "single_agent"
+      ],
+      "report_markdown": "runs\\benchmarks-ollama\\shell-input-safety\\single_agent\\run-f70cc2c72381.md",
+      "trace": "runs\\benchmarks-ollama\\shell-input-safety\\single_agent\\run-f70cc2c72381.jsonl",
+      "score_100": 85.0,
+      "components": {
+        "correctness": 15.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 1,
+      "false_positives": 1,
+      "expected_issues": 1,
+      "verified_findings": 2,
+      "runtime_seconds": 17.808779,
+      "estimated_tokens": 478,
+      "model_calls": 1,
+      "rejected_by_checker": 0,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "shared-state-reliability",
+      "mode": "multi_agent",
+      "planned_agents": [
+        "quality_reviewer"
+      ],
+      "report_markdown": "runs\\benchmarks-ollama\\shared-state-reliability\\multi_agent\\run-e5527ff621da.md",
+      "trace": "runs\\benchmarks-ollama\\shared-state-reliability\\multi_agent\\run-e5527ff621da.jsonl",
+      "score_100": 100.0,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 1,
+      "false_positives": 0,
+      "expected_issues": 1,
+      "verified_findings": 1,
+      "runtime_seconds": 26.14432,
+      "estimated_tokens": 687,
+      "model_calls": 2,
+      "rejected_by_checker": 0,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "shared-state-reliability",
+      "mode": "single_agent",
+      "planned_agents": [
+        "single_agent"
+      ],
+      "report_markdown": "runs\\benchmarks-ollama\\shared-state-reliability\\single_agent\\run-f22743f82475.md",
+      "trace": "runs\\benchmarks-ollama\\shared-state-reliability\\single_agent\\run-f22743f82475.jsonl",
+      "score_100": 100.0,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 15.0
+      },
+      "true_positives": 1,
+      "false_positives": 0,
+      "expected_issues": 1,
+      "verified_findings": 1,
+      "runtime_seconds": 23.186036,
+      "estimated_tokens": 512,
+      "model_calls": 1,
+      "rejected_by_checker": 0,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "full-repo-with-hostile-comment",
+      "mode": "multi_agent",
+      "planned_agents": [
+        "bug_hunter",
+        "security_auditor",
+        "quality_reviewer"
+      ],
+      "report_markdown": "runs\\benchmarks-ollama\\full-repo-with-hostile-comment\\multi_agent\\run-0071b62d556f.md",
+      "trace": "runs\\benchmarks-ollama\\full-repo-with-hostile-comment\\multi_agent\\run-0071b62d556f.jsonl",
+      "score_100": 97.5,
+      "components": {
+        "correctness": 30.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 12.5
+      },
+      "true_positives": 4,
+      "false_positives": 0,
+      "expected_issues": 4,
+      "verified_findings": 6,
+      "runtime_seconds": 217.472058,
+      "estimated_tokens": 3627,
+      "model_calls": 5,
+      "rejected_by_checker": 1,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    },
+    {
+      "task": "full-repo-with-hostile-comment",
+      "mode": "single_agent",
+      "planned_agents": [
+        "single_agent"
+      ],
+      "report_markdown": "runs\\benchmarks-ollama\\full-repo-with-hostile-comment\\single_agent\\run-2f77d70bba0a.md",
+      "trace": "runs\\benchmarks-ollama\\full-repo-with-hostile-comment\\single_agent\\run-2f77d70bba0a.jsonl",
+      "score_100": 91.0,
+      "components": {
+        "correctness": 24.0,
+        "issue_coverage": 30.0,
+        "evidence_validity": 25.0,
+        "usefulness": 12.0
+      },
+      "true_positives": 4,
+      "false_positives": 1,
+      "expected_issues": 4,
+      "verified_findings": 5,
+      "runtime_seconds": 91.295573,
+      "estimated_tokens": 1211,
+      "model_calls": 1,
+      "rejected_by_checker": 0,
+      "cost_usd": null,
+      "partial": false,
+      "agent_errors": []
+    }
+  ],
+  "summary": {
+    "multi_agent": {
+      "mean_score": 99.38,
+      "total_seconds": 429.91,
+      "total_tokens": 8923,
+      "total_model_calls": 17
+    },
+    "single_agent": {
+      "mean_score": 94.0,
+      "total_seconds": 203.079,
+      "total_tokens": 3434,
+      "total_model_calls": 5
+    },
+    "multi_over_single": {
+      "time": 2.12,
+      "tokens": 2.6,
+      "model_calls": 3.4,
+      "score_delta": 5.38
+    }
+  },
+  "injected_failure": {
+    "provider_error_injected": true,
+    "retry_events": 1,
+    "partial": false,
+    "verified_findings": 2,
+    "recovery": "one bounded retry; successful specialist results retained",
+    "trace": "runs\\benchmarks-ollama\\injected-failure\\run-a470284000ef.jsonl"
+  },
+  "limitations": [
+    "Static-mode token counts are text-size estimates (4 characters per token); no money is spent.",
+    "Model-mode cost is $0 because the model runs locally; tokens are the server's reported counts.",
+    "The single-agent baseline gets the union of the specialists' tools and the same files and budgets.",
+    "Four small synthetic tasks: enough to compare mechanics, not to generalise about model quality."
+  ]
+}
