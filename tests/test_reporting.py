@@ -51,3 +51,19 @@ def test_redaction_keeps_environment_lookups_but_masks_values():
     assert redact_text("TOKEN = None") == "TOKEN = None"
     assert redact_text('DB_PASSWORD = "hunter2"') == 'DB_PASSWORD = "[REDACTED]"'
     assert "eyJhbGciOi" not in redact_text("token=eyJhbGciOiJIUzI1NiJ9.e30.abc")
+
+
+def test_redaction_keeps_code_parseable():
+    import ast
+    source = (
+        'raw = client.ask(prompt, temperature=0.0, max_tokens=1024)\n'
+        'args = ["--password-store=basic", "--no-first-run"]\n'
+        'API_TOKEN = "tok_live_9f8a7"\n'
+        "password = 'hunter2'\n"
+        'session_token = abc123secret\n'
+    )
+    cleaned = redact_text(source)
+    ast.parse(cleaned)  # must still be valid Python
+    assert "max_tokens=1024)" in cleaned
+    assert "tok_live_9f8a7" not in cleaned and "hunter2" not in cleaned and "abc123secret" not in cleaned
+    assert "password = '[REDACTED]'" in cleaned
